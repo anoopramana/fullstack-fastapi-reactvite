@@ -81,3 +81,6 @@ class tablename(Base):
     __tablename__= 'tablename'
     id = Column(Integer, primary_key=True)
     name = Column(String(255), nullable=False, unique=True)
+
+Continue with project:
+    https://www.youtube.com/watch?v=pG8DCjnhP74&list=PLRuA8IBw6y5WSh5Gc48xJ72YpK5kKA-oL&index=10
