@@ -1,5 +1,7 @@
 This is a base template for a fullstack app using FastAPI in the background and React-Vite  
 
+# Frontend
+
 Step 1:
 - Setup front and back end development environments with 
 - For Backend: python pip
@@ -47,3 +49,35 @@ Cloning my git repo for faster setup next time:
 - git checkout [name of branch]
 - initiate the venv
 - %pip install -r requirements.txt
+
+# Backend
+- In home directory create backend folder 
+- In this folder create another folder called [appname]
+- create an __init.py main.py, database.py, models.py files
+- in main.py:
+from fastapi import FastAPI
+app = FastAPI()
+@app.get("/")
+async def hello():
+    return "Hello from FastAPI"
+
+- in database.py
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+engine = create_engine('sqlite:///./sqlite.db', connect_args={'check_same_thread': False})
+
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
+
+- in models.py
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Table
+from sqlalchemy.orm import relationship
+from .database import Base
+
+class tablename(Base):
+    __tablename__= 'tablename'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(255), nullable=False, unique=True)
